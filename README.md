@@ -1,2 +1,2 @@
-# Engagge-Local
+# Engage-Local
 Plataforma web interativa para participação comunitária
