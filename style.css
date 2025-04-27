@@ -1,119 +1,72 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
-  }
-  
-  body {
-    background: #eaeaea;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-  }
-  
-  .container,
-  .login-container {
-    background: #8f71f1;
-    padding: 2rem;
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 400px;
-  }
-  
-  .logo,
-  .login-logo {
-    width: 100px;
-    margin-bottom: 1rem;
-  }
-  
-  h1, h2 {
-    color: #fff;
-    margin-bottom: 1.5rem;
-  }
-  
-  input {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: none;
-    border-bottom: 2px solid #333;
-    background: transparent;
-    color: #fff;
-    font-size: 1rem;
-  }
-  
-  input::placeholder {
-    color: #ddd;
-  }
-  
-  .btn {
-    background: #0047ff;
-    color: #fff;
-    padding: 10px;
-    border: none;
-    width: 100%;
-    margin: 10px 0;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
-  .btn:hover {
-    background: #003bd1;
-  }
-  
-  .btn-outline {
-    background: transparent;
-    border: 2px solid #0047ff;
-    color: #0047ff;
-    padding: 10px;
-    border-radius: 10px;
-    width: 100%;
-    display: block;
-    margin-top: 10px;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  .btn-outline:hover {
-    background: #0047ff;
-    color: #fff;
-  }
-  
-  .btn-social {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 10px;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .google {
-    background: #fff;
-    color: #000;
-  }
-  
-  .facebook {
-    background: #1877f2;
-    color: #fff;
-  }
-  
-  .links {
-    margin-top: 15px;
-  }
-  
-  .links a {
-    display: block;
-    color: #fff;
-    text-decoration: underline;
-    margin-top: 5px;
-    font-size: 0.9rem;
-  }
-  
+/* style.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb') no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.form-container {
+  background-color: #9376f5; /* roxo claro */
+  padding: 30px 20px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+.form-container img {
+  width: 80px;
+  margin-bottom: 10px;
+}
+
+.form-container h1 {
+  color: #004AAD;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid #000;
+  background: transparent;
+  outline: none;
+}
+
+button {
+  background-color: #004AAD;
+  color: white;
+  border: none;
+  padding: 12px;
+  margin-top: 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #003399;
+}
+
+a {
+  color: #000;
+  font-size: 14px;
+  margin-top: 15px;
+  text-decoration: underline;
+  display: inline-block;
+}
