@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - EngageLocal</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <div class="form-container">
+    <img src="../assets/logo.png" alt="Logo">
+    <h2>EngageLocal</h2>
+
+    <form>
+      <input type="text" placeholder="Nome de usuário" required>
+      <input type="password" placeholder="Senha" required>
+      <button type="submit">Entrar</button>
+    </form>
+
+    <a href="cadastro.html">Não tem uma conta? Cadastrar</a>
+    <a href="../index.html">Voltar</a>
+  </div>
+
+  <script>
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      window.location.href = 'home.html';
+    });
+  </script>
+
+</body>
+</html>

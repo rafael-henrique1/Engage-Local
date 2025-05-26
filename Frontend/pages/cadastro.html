@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cadastro - EngageLocal</title>
-  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
   <div class="form-container">
-    <img src="../assets/logo.png" alt="Logo EngageLocal">
-    <h1>EngageLocal</h1>
+    <img src="../assets/logo.png" alt="Logo">
+    <h2>EngageLocal</h2>
 
     <form>
       <input type="text" placeholder="Nome completo" required>
@@ -21,8 +21,17 @@
       <button type="submit">Cadastrar</button>
     </form>
 
-    <a href="../index.html">Possuo cadastro ></a>
+    <a href="login.html">Já tem uma conta? Login</a>
+    <a href="../index.html">Voltar</a>
   </div>
+
+  <script>
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      window.location.href = 'home.html';
+    });
+  </script>
 
 </body>
 </html>

@@ -1,5 +1,9 @@
 /* style.css */
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -12,8 +16,8 @@ body {
   height: 100vh;
 }
 
-.form-container {
-  background-color: #9376f5; /* roxo claro */
+.container, .form-container {
+  background-color: rgba(147, 118, 245, 0.95); /* Roxo claro com opacidade */
   padding: 30px 20px;
   border-radius: 20px;
   width: 90%;
@@ -22,13 +26,18 @@ body {
   text-align: center;
 }
 
-.form-container img {
+.container img, .form-container img {
   width: 80px;
   margin-bottom: 10px;
 }
 
-.form-container h1 {
+h1, h2 {
   color: #004AAD;
+  margin-bottom: 20px;
+}
+
+p {
+  color: #000;
   margin-bottom: 20px;
 }
 
@@ -48,25 +57,32 @@ input[type="password"] {
   outline: none;
 }
 
-button {
+button, .btn {
   background-color: #004AAD;
   color: white;
   border: none;
   padding: 12px;
-  margin-top: 20px;
   border-radius: 25px;
   cursor: pointer;
   font-size: 16px;
+  display: inline-block;
+  text-decoration: none;
 }
 
-button:hover {
+button:hover, .btn:hover {
   background-color: #003399;
 }
 
 a {
   color: #000;
   font-size: 14px;
-  margin-top: 15px;
+  margin-top: 10px;
   text-decoration: underline;
   display: inline-block;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
