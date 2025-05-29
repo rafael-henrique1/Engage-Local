@@ -10,51 +10,142 @@ body {
   font-family: Arial, sans-serif;
   background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb') no-repeat center center fixed;
   background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  min-height: 100vh;
 }
 
-.container, .form-container {
-  background-color: rgba(147, 118, 245, 0.95); /* Roxo claro com opacidade */
-  padding: 30px 20px;
+/* ===== Navbar ===== */
+.navbar {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.navbar .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar .logo img {
+  width: 35px;
+}
+
+.navbar .logo span {
+  font-size: 20px;
+  color: #004AAD;
+  font-weight: bold;
+}
+
+.navbar .menu {
+  display: flex;
+  gap: 15px;
+}
+
+.navbar .menu a {
+  background-color: #004AAD;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.navbar .menu a:hover {
+  background-color: #003399;
+}
+
+/* ===== Página Inicial (Index) ===== */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  padding-top: 80px; /* Para não ficar escondido atrás da navbar */
+  background-color: #d248f8d9;
+  padding: 30px;
+  border-radius: 20px;
+  max-width: 700px;
+  margin: 120px auto 40px auto;
+  }
+  
+
+.main-content h1 {
+  font-size: 48px;
+  color: white;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+}
+
+.main-content p {
+  font-size: 18px;
+  color: white;
+  max-width: 600px;
+  margin: 20px;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+}
+
+.main-content .buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.main-content .buttons a {
+  background-color: #004AAD;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.main-content .buttons a:hover {
+  background-color: #003399;
+}
+
+/* ===== Formulários (Login e Cadastro) ===== */
+.form-container {
+  background-color: rgba(147, 118, 245, 0.95);
+  padding: 40px 30px;
   border-radius: 20px;
   width: 90%;
   max-width: 400px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
   text-align: center;
+  margin: 120px auto 40px auto; /* Top margin para não colar na navbar */
 }
 
-.container img, .form-container img {
-  width: 80px;
-  margin-bottom: 10px;
-}
-
-h1, h2 {
+.form-container h1 {
   color: #004AAD;
   margin-bottom: 20px;
 }
 
-p {
-  color: #000;
-  margin-bottom: 20px;
-}
-
-form {
+.form-container form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 }
 
 input[type="text"],
 input[type="email"],
 input[type="password"] {
-  padding: 10px;
+  padding: 12px;
   border: none;
   border-bottom: 2px solid #000;
   background: transparent;
   outline: none;
+  color: #000;
 }
 
 button, .btn {
@@ -65,7 +156,6 @@ button, .btn {
   border-radius: 25px;
   cursor: pointer;
   font-size: 16px;
-  display: inline-block;
   text-decoration: none;
 }
 
@@ -73,16 +163,32 @@ button:hover, .btn:hover {
   background-color: #003399;
 }
 
-a {
+.form-container a {
   color: #000;
   font-size: 14px;
-  margin-top: 10px;
   text-decoration: underline;
+  margin-top: 10px;
   display: inline-block;
 }
 
-.buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+/* ===== Responsivo ===== */
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 20px;
+  }
+
+  .navbar .menu {
+    align-self: flex-end;
+  }
+
+  .main-content h1 {
+    font-size: 36px;
+  }
+
+  .main-content p {
+    font-size: 16px;
+  }
 }

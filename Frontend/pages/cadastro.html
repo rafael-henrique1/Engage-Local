@@ -1,37 +1,37 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadastro - EngageLocal</title>
-  <link rel="stylesheet" href="../css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - EngageLocal</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="../assets/logo.png" alt="Logo">
+            <span>EngageLocal</span>
+        </div>
+        <div class="menu">
+            <a href="../index.html">Início</a>
+            <a href="./login.html">Entrar</a>
+        </div>
+    </div>
 
-  <div class="form-container">
-    <img src="../assets/logo.png" alt="Logo">
-    <h2>EngageLocal</h2>
-
-    <form>
-      <input type="text" placeholder="Nome completo" required>
-      <input type="email" placeholder="Email" required>
-      <input type="text" placeholder="Nome de usuário" required>
-      <input type="password" placeholder="Criar senha" required>
-      <input type="password" placeholder="Confirmar senha" required>
-      <button type="submit">Cadastrar</button>
-    </form>
-
-    <a href="login.html">Já tem uma conta? Login</a>
-    <a href="../index.html">Voltar</a>
-  </div>
-
-  <script>
-    const form = document.querySelector('form');
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      window.location.href = 'home.html';
-    });
-  </script>
-
+    <div class="form-container">
+        <h1>Cadastro</h1>
+        <form>
+            <input type="text" placeholder="Nome completo" required>
+            <input type="text" placeholder="Nome de usuário" required>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Senha" required>
+            <input type="text" placeholder="CPF" required>
+            <input type="text" placeholder="Bairro" required>
+            <input type="text" placeholder="Cidade" required>
+            <input type="text" placeholder="Estado" required>
+            <button type="submit">Cadastrar</button>
+        </form>
+        <a href="./login.html">Já tem conta? Entrar</a>
+    </div>
 </body>
 </html>
