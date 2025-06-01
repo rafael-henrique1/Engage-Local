@@ -27,5 +27,18 @@
         </form>
         <a href="./cadastro.html">Não tem conta? Cadastre-se</a>
     </div>
+
+    <script>
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Impede o envio padrão do formulário
+    
+            // Aqui você pode validar os dados se quiser
+    
+            // Simula login bem-sucedido e redireciona
+            window.location.href = 'home.html';
+        });
+    </script>
+    
 </body>
 </html>

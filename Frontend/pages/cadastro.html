@@ -32,6 +32,22 @@
             <button type="submit">Cadastrar</button>
         </form>
         <a href="./login.html">Já tem conta? Entrar</a>
-    </div>
+        </div>
+        
+        <!-- SCRIPT AQUI -->
+        <script>
+            const form = document.querySelector('form');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+        
+                // Simula cadastro e redireciona
+                window.location.href = 'home.html';
+            });
+        </script>
+        
+        </body>
+        </html>
+        
+    
 </body>
 </html>
