@@ -1,0 +1,268 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// Usuários e Organizações
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  password      String
+  name          String
+  role          UserRole  @default(USER)
+  organization  Organization? @relation(fields: [orgId], references: [id])
+  orgId         String?
+  bio           String?   @db.Text
+  avatar        String?
+  points        Int       @default(0)
+  level         Int       @default(1)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relações
+  projects      Project[]
+  votes        Vote[]
+  badges       UserBadge[]
+  missions     UserMission[]
+  posts        Post[]
+  comments     Comment[]
+  followers    Follow[]    @relation("Following")
+  following    Follow[]    @relation("Followers")
+  rewards      RewardClaim[]
+  auditLogs    AuditLog[]
+}
+
+model Organization {
+  id          String    @id @default(cuid())
+  name        String
+  description String?   @db.Text
+  logo        String?
+  verified    Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Relações
+  users       User[]
+  projects    Project[]
+}
+
+// Projetos e Votação
+model Project {
+  id          String    @id @default(cuid())
+  title       String
+  description String    @db.Text
+  status      ProjectStatus @default(DRAFT)
+  category    String
+  location    String
+  goals       Json?
+  metrics     Json?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Relações
+  creator     User      @relation(fields: [creatorId], references: [id])
+  creatorId   String
+  organization Organization? @relation(fields: [orgId], references: [id])
+  orgId       String?
+  votes       Vote[]
+  missions    Mission[]
+}
+
+model Vote {
+  id        String    @id @default(cuid())
+  value     Int
+  ipAddress String?
+  deviceId  String?
+  createdAt DateTime  @default(now())
+
+  // Relações
+  user      User      @relation(fields: [userId], references: [id])
+  userId    String
+  project   Project   @relation(fields: [projectId], references: [id])
+  projectId String
+
+  @@unique([userId, projectId])
+}
+
+// Gamificação
+model Mission {
+  id          String    @id @default(cuid())
+  title       String
+  description String    @db.Text
+  type        MissionType
+  rules       Json
+  points      Int
+  startDate   DateTime
+  endDate     DateTime
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Relações
+  project     Project?  @relation(fields: [projectId], references: [id])
+  projectId   String?
+  users       UserMission[]
+}
+
+model UserMission {
+  id          String    @id @default(cuid())
+  status      MissionStatus @default(IN_PROGRESS)
+  progress    Json?
+  completedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Relações
+  user        User      @relation(fields: [userId], references: [id])
+  userId      String
+  mission     Mission   @relation(fields: [missionId], references: [id])
+  missionId   String
+
+  @@unique([userId, missionId])
+}
+
+model Badge {
+  id          String    @id @default(cuid())
+  name        String    @unique
+  description String
+  image       String
+  rules       Json
+  createdAt   DateTime  @default(now())
+
+  // Relações
+  users       UserBadge[]
+}
+
+model UserBadge {
+  id        String    @id @default(cuid())
+  earnedAt  DateTime  @default(now())
+
+  // Relações
+  user      User      @relation(fields: [userId], references: [id])
+  userId    String
+  badge     Badge     @relation(fields: [badgeId], references: [id])
+  badgeId   String
+
+  @@unique([userId, badgeId])
+}
+
+// Recompensas
+model Reward {
+  id          String    @id @default(cuid())
+  title       String
+  description String    @db.Text
+  image       String?
+  points      Int
+  stock       Int
+  active      Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Relações
+  claims      RewardClaim[]
+}
+
+model RewardClaim {
+  id          String    @id @default(cuid())
+  status      ClaimStatus @default(PENDING)
+  points      Int
+  claimedAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Relações
+  user        User      @relation(fields: [userId], references: [id])
+  userId      String
+  reward      Reward    @relation(fields: [rewardId], references: [id])
+  rewardId    String
+}
+
+// Fórum e Social
+model Post {
+  id          String    @id @default(cuid())
+  content     String    @db.Text
+  media       Json?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Relações
+  author      User      @relation(fields: [authorId], references: [id])
+  authorId    String
+  comments    Comment[]
+}
+
+model Comment {
+  id          String    @id @default(cuid())
+  content     String    @db.Text
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Relações
+  author      User      @relation(fields: [authorId], references: [id])
+  authorId    String
+  post        Post      @relation(fields: [postId], references: [id])
+  postId      String
+}
+
+model Follow {
+  id          String    @id @default(cuid())
+  createdAt   DateTime  @default(now())
+
+  // Relações
+  follower    User      @relation("Following", fields: [followerId], references: [id])
+  followerId  String
+  following   User      @relation("Followers", fields: [followingId], references: [id])
+  followingId String
+
+  @@unique([followerId, followingId])
+}
+
+// Auditoria
+model AuditLog {
+  id          String    @id @default(cuid())
+  action      String
+  entityType  String
+  entityId    String
+  metadata    Json
+  createdAt   DateTime  @default(now())
+
+  // Relações
+  user        User      @relation(fields: [userId], references: [id])
+  userId      String
+}
+
+// Enums
+enum UserRole {
+  USER
+  ORG_ADMIN
+  ADMIN
+}
+
+enum ProjectStatus {
+  DRAFT
+  PENDING
+  ACTIVE
+  COMPLETED
+  CANCELLED
+}
+
+enum MissionType {
+  INDIVIDUAL
+  TEAM
+  COMMUNITY
+}
+
+enum MissionStatus {
+  IN_PROGRESS
+  COMPLETED
+  FAILED
+}
+
+enum ClaimStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  DELIVERED
+}
